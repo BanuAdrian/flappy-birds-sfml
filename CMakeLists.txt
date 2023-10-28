@@ -12,7 +12,7 @@ option(WARNINGS_AS_ERRORS "Treat warnings as errors" OFF)
 option(BUILD_SHARED_LIBS "Build SFML as shared library" FALSE)
 
 if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
-  set(CMAKE_INSTALL_PREFIX "install_dir" CACHE PATH "..." FORCE)
+    set(CMAKE_INSTALL_PREFIX "install_dir" CACHE PATH "..." FORCE)
 endif()
 
 # disable sanitizers when releasing executables without explicitly requested debug info
@@ -72,13 +72,13 @@ include(FetchContent)
 
 # NOTE: Also update SFML_VERSION env var in .github/workflows/cmake.yml:124
 FetchContent_Declare(
-  SFML
-  GIT_REPOSITORY https://github.com/SFML/SFML.git
-  GIT_TAG        2.6.0
-  # GIT_TAG        11b73743c42cf7ecd7c596ba83fdbf1150ffa96c # 2.6.0
-  # GIT_TAG        b8f72c7cf2a7f770fed6955d5cdc14b11b9af365 # master as of 2023-07-29
-  # GIT_TAG        origin/master
-  GIT_SHALLOW    1  # works only with branches or tags, not with arbitrary commit hashes
+        SFML
+        GIT_REPOSITORY https://github.com/SFML/SFML.git
+        GIT_TAG        2.6.0
+        # GIT_TAG        11b73743c42cf7ecd7c596ba83fdbf1150ffa96c # 2.6.0
+        # GIT_TAG        b8f72c7cf2a7f770fed6955d5cdc14b11b9af365 # master as of 2023-07-29
+        # GIT_TAG        origin/master
+        GIT_SHALLOW    1  # works only with branches or tags, not with arbitrary commit hashes
 )
 
 
@@ -115,8 +115,8 @@ add_executable(${PROJECT_NAME} main.cpp)
 # target definitions
 
 if(GITHUB_ACTIONS)
-  message("NOTE: GITHUB_ACTIONS defined")
-  target_compile_definitions(${PROJECT_NAME} PRIVATE GITHUB_ACTIONS)
+    message("NOTE: GITHUB_ACTIONS defined")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE GITHUB_ACTIONS)
 endif()
 
 ###############################################################################
