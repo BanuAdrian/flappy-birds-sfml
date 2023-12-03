@@ -108,7 +108,26 @@ endif()
 ###############################################################################
 
 # NOTE: update executable name in .github/workflows/cmake.yml:25 when changing name here
-add_executable(${PROJECT_NAME} main.cpp)
+add_executable(${PROJECT_NAME} main.cpp
+        src/YellowBird.cpp
+        headers/YellowBird.hpp
+        src/Background.cpp
+        headers/Background.hpp
+        src/Ground.cpp
+        headers/Ground.hpp
+        src/Game.cpp
+        headers/Game.hpp
+        src/Pipe.cpp
+        headers/Pipe.hpp
+        src/Bird.cpp
+        headers/Bird.hpp
+        src/BlueBird.cpp
+        headers/BlueBird.hpp
+        src/RedBird.cpp
+        headers/RedBird.hpp
+        src/Exceptions.cpp
+        headers/Exceptions.hpp
+)
 
 ###############################################################################
 

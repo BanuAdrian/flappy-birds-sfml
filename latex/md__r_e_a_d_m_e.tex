@@ -1,0 +1,75 @@
+\chapter{OOP Template}
+\hypertarget{md__r_e_a_d_m_e}{}\label{md__r_e_a_d_m_e}\index{OOP Template@{OOP Template}}
+\label{md__r_e_a_d_m_e_autotoc_md0}%
+\Hypertarget{md__r_e_a_d_m_e_autotoc_md0}%
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysubsection{\texorpdfstring{Tema 0}{Tema 0}}\label{md__r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyItemize}
+\item \mbox{[}x\mbox{]} Nume proiect (poate fi schimbat ulterior)
+\item \mbox{[}x\mbox{]} Scurtă descriere a temei alese, ce v-\/ați propus să implementați
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{\texorpdfstring{Tema 1}{Tema 1}}\label{md__r_e_a_d_m_e_autotoc_md2}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysubsubsection{\texorpdfstring{Cerințe}{Cerințe}}\label{md__r_e_a_d_m_e_autotoc_md3}
+
+\begin{DoxyItemize}
+\item \mbox{[}X\mbox{]} definirea a minim {\bfseries{3-\/4 clase}} folosind compunere
+\item \mbox{[}x\mbox{]} constructori de inițializare
+\item \mbox{[}x\mbox{]} pentru o clasă\+: constructor de copiere, {\ttfamily operator=} de copiere, destructor
+\item \mbox{[}x\mbox{]} {\ttfamily operator\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<}} pentru toate clasele pentru afișare (std\+::ostream)
+\item \mbox{[}x\mbox{]} cât mai multe {\ttfamily const} (unde este cazul)
+\item \mbox{[}x\mbox{]} implementarea a minim 3 funcții membru publice pentru funcționalități specifice temei alese
+\item \mbox{[}x\mbox{]} scenariu de utilizare a claselor definite\+:
+\begin{DoxyItemize}
+\item crearea de obiecte și apelarea tuturor funcțiilor membru publice în main
+\item vor fi adăugate în fișierul {\ttfamily tastatura.\+txt} exemple de date de intrare de la tastatură (dacă există)
+\end{DoxyItemize}
+\item \mbox{[}x\mbox{]} tag de {\ttfamily git}\+: de exemplu {\ttfamily v0.\+1}
+\item \mbox{[}x\mbox{]} serviciu de integrare continuă (CI); exemplu\+: Git\+Hub Actions
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{\texorpdfstring{Tema 2}{Tema 2}}\label{md__r_e_a_d_m_e_autotoc_md4}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsubsection{\texorpdfstring{Cerințe}{Cerințe}}\label{md__r_e_a_d_m_e_autotoc_md5}
+
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} separarea codului din clase în {\ttfamily .h} (sau {\ttfamily .hpp}) și {\ttfamily .cpp}
+\item \mbox{[} \mbox{]} moșteniri\+:
+\begin{DoxyItemize}
+\item minim o clasă de bază și {\bfseries{3 clase derivate}}
+\item ierarhia trebuie să fie cu bază proprie, nu derivată dintr-\/o clasă predefinită
+\item \mbox{[} \mbox{]} clasă cu atribut de tip pointer la o clasă de bază cu derivate
+\item \mbox{[} \mbox{]} funcții virtuale (pure) apelate prin pointeri de bază din clasa care conține atributul de tip pointer de bază
+\begin{DoxyItemize}
+\item minim o funcție virtuală va fi {\bfseries{specifică temei}} (e.\+g. nu simple citiri/afișări)
+\item constructori virtuali (clone)\+: sunt necesari, dar nu se consideră funcții specifice temei
+\end{DoxyItemize}
+\item \mbox{[} \mbox{]} apelarea constructorului din clasa de bază din constructori din derivate
+\item \mbox{[} \mbox{]} smart pointers (recomandat, opțional)
+\item \mbox{[} \mbox{]} {\ttfamily dynamic\+\_\+cast}/{\ttfamily std\+::dynamic\+\_\+pointer\+\_\+cast} pentru downcast cu sens
+\end{DoxyItemize}
+\item \mbox{[} \mbox{]} suprascris cc/op= pentru copieri/atribuiri corecte, copy and swap
+\item \mbox{[} \mbox{]} excepții
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} ierarhie proprie cu baza {\ttfamily std\+::exception} sau derivată din {\ttfamily std\+::exception}; minim 2 clase pentru erori specifice
+\item \mbox{[} \mbox{]} utilizare cu sens\+: de exemplu, {\ttfamily throw} în constructor, {\ttfamily try}/{\ttfamily catch} în {\ttfamily main}
+\end{DoxyItemize}
+\item \mbox{[} \mbox{]} funcții și atribute {\ttfamily static}
+\item \mbox{[} \mbox{]} STL
+\item \mbox{[} \mbox{]} cât mai multe {\ttfamily const}
+\item \mbox{[} \mbox{]} la sfârșit\+: commit separat cu adăugarea unei noi clase derivate fără a modifica restul codului, pe lângă cele 3 derivate deja adăugate
+\begin{DoxyItemize}
+\item noua derivată nu poate fi una existentă care a fost ștearsă și adăugată din nou
+\end{DoxyItemize}
+\item \mbox{[} \mbox{]} tag de {\ttfamily git}\+: de exemplu {\ttfamily v0.\+2}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysection{\texorpdfstring{Tema 3}{Tema 3}}\label{md__r_e_a_d_m_e_autotoc_md6}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysubsubsection{\texorpdfstring{Cerințe}{Cerințe}}\label{md__r_e_a_d_m_e_autotoc_md7}
+
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} 2 șabloane de proiectare (design patterns)
+\item \mbox{[} \mbox{]} o clasă șablon cu sens; minim {\bfseries{2 instanțieri}}
+\begin{DoxyItemize}
+\item \mbox{[} \mbox{]} preferabil și o funcție șablon (template) cu sens; minim 2 instanțieri
+\end{DoxyItemize}
+\item \mbox{[} \mbox{]} tag de {\ttfamily git}\+: de exemplu {\ttfamily v0.\+3} sau {\ttfamily v1.\+0}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysection{\texorpdfstring{Resurse}{Resurse}}\label{md__r_e_a_d_m_e_autotoc_md8}
+
+\begin{DoxyItemize}
+\item \href{https://github.com/SFML/SFML/tree/2.6.0}{\texttt{ SFML}} (Zlib)
+\item adăugați trimiteri către resursele externe care v-\/au ajutat sau pe care le-\/ați folosit 
+\end{DoxyItemize}
