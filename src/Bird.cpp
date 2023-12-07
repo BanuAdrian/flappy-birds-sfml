@@ -43,9 +43,9 @@ void Bird::animateWings(bool gameHasBegun) {
     static bool wingsState = 0;
     float secondsSinceLastWingAnimation;
     if (gameHasBegun == 1)
-        secondsSinceLastWingAnimation = 0.1;
+        secondsSinceLastWingAnimation = 0.1f;
     else
-        secondsSinceLastWingAnimation = 0.25;
+        secondsSinceLastWingAnimation = 0.25f;
     if (wingsAnimationGeneratingClock->getElapsedTime().asSeconds() > secondsSinceLastWingAnimation) {
         if (wingsState == 0) {
             birdSprite.setTexture(birdTextureUpFlap);
@@ -80,4 +80,4 @@ Bird::~Bird() = default;
 //std::ostream& operator<<(std::ostream& out, const Bird& bird) {
 //    out << "posY = " << bird.posY << " | velocity = " << bird.velocity << "\n";
 //    return out;
-//}
+    //}

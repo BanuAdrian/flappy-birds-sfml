@@ -19,6 +19,8 @@ BlueBird::BlueBird(int localScoreNeeded) : Bird(localScoreNeeded) {
     if (!font.loadFromFile("../assets/font.ttf")) {
         throw FontLoadException();
     }
+    transparenceReady = false;
+    transparentNow = false;
     transparenceHandlingClock = std::make_shared<sf::Clock>();
     transparenceText.setFont(font);
     transparenceText.setCharacterSize(10);
