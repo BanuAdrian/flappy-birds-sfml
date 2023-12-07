@@ -58,7 +58,7 @@ public:
      *
      * @return Pointer la clasa derivata "BlueBird".
      */
-    BlueBird* clone() const override;
+//    BlueBird* clone() const override;
 
     /**
      * \brief Getter pentru numarul de vieti al pasarii.

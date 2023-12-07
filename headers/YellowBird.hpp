@@ -30,7 +30,7 @@ public:
      *
      * @return Pointer la clasa derivata "YellowBird".
      */
-    YellowBird* clone() const override;
+//    YellowBird* clone() const override;
 
     /**
      * \brief Getter pentru numarul de vieti al pasarii.

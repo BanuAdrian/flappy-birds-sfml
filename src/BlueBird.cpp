@@ -30,9 +30,9 @@ BlueBird::BlueBird(int localScoreNeeded) : Bird(localScoreNeeded) {
     transparenceText.setPosition(300, 15);
 }
 
-BlueBird* BlueBird::clone() const {
-    return new BlueBird(*this);
-}
+//BlueBird* BlueBird::clone() const {
+//    return new BlueBird(*this);
+//}
 
 int BlueBird::getScoreNeeded() const {
     return scoreNeeded;

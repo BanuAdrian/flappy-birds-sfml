@@ -19,9 +19,9 @@ YellowBird::YellowBird(int localScoreNeeded) : Bird(localScoreNeeded) {
 
 }
 
-YellowBird* YellowBird::clone() const {
-    return new YellowBird(*this);
-}
+//YellowBird* YellowBird::clone() const {
+//    return new YellowBird(*this);
+//}
 
 int YellowBird::getScoreNeeded() const {
     return scoreNeeded;

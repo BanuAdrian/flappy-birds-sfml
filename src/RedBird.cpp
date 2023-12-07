@@ -28,9 +28,9 @@ RedBird::RedBird(int localScoreNeeded) : Bird(localScoreNeeded) {
     livesGeneratingClock = std::make_shared<sf::Clock>();
 }
 
-RedBird* RedBird::clone() const {
-    return new RedBird(*this);
-}
+//RedBird* RedBird::clone() const {
+//    return new RedBird(*this);
+//}
 
 int RedBird::getScoreNeeded() const {
     return scoreNeeded;

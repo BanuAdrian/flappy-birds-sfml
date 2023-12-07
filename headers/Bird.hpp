@@ -49,6 +49,11 @@ protected:
     int scoreNeeded;
 
     /**
+     * \brief Determina daca aripile sunt orientate in sus sau in jos.
+     */
+    bool wingsUp;
+
+    /**
      * \brief Pozitia pe axa OX.
      */
     float posX;
@@ -129,7 +134,7 @@ public:
      *
      * @return Pointer la clasa de baza Bird.
      */
-    virtual Bird* clone() const = 0;
+//    virtual Bird* clone() const = 0;
 
     /**
      * \brief Getter pentru numarul de vieti al pasarii.

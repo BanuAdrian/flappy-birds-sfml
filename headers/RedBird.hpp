@@ -52,7 +52,7 @@ public:
      *
      * @return Pointer la clasa derivata "RedBird".
      */
-    RedBird* clone() const override;
+//    RedBird* clone() const override;
 
     /**
      * \brief Getter pentru numarul de vieti al pasarii.

@@ -5,32 +5,35 @@
 #include "../headers/Bird.hpp"
 #include <iostream>
 
-Bird::Bird(int localScoreNeeded) : scoreNeeded(localScoreNeeded) {
-    posY = 300;
+Bird::Bird(int localScoreNeeded):   wingsAnimationGeneratingClock(std::make_shared<sf::Clock>()),
+                                    scoreNeeded(localScoreNeeded)
+{
+    posY = 350;
     posX = 190;
     velocity = 0;
     rotationAngle = 0;
-    wingsAnimationGeneratingClock = std::make_shared<sf::Clock>();
+    wingsUp = true;
     birdSprite.setOrigin(10, 10);
     birdSprite.setPosition(posX, posY);
     birdSprite.setScale(sf::Vector2f(1.7f, 1.75f));
 }
 
 void Bird::fly() {
-    velocity = -425;
-    rotationAngle = -35;
+//    velocity = -425;
+    velocity = -550;
+    rotationAngle = -25;
 }
 
 void Bird::fall(float elapsedTime) {
-    velocity += elapsedTime * 1300;
-    if (rotationAngle < -28)
-        rotationAngle += elapsedTime * 20;
-    else if (rotationAngle >= -28 && rotationAngle < 0)
-        rotationAngle += elapsedTime * 75;
-    else if (rotationAngle >= 0 && rotationAngle < 30)
-        rotationAngle += elapsedTime * 300;
-    else if (rotationAngle >= 30 && rotationAngle < 90)
-        rotationAngle += elapsedTime * 700;
+    if (velocity <= 500)
+        velocity += elapsedTime * 2100;
+    else if (velocity > 500 && rotationAngle < 90) {
+        velocity += elapsedTime * 5;
+        rotationAngle += elapsedTime * 400;
+    }
+    else if (rotationAngle >= 90) {
+        velocity += elapsedTime * 2100;
+    }
     birdSprite.setRotation(rotationAngle);
     posY += velocity * elapsedTime;
 }
@@ -40,20 +43,19 @@ void Bird::update() {
 }
 
 void Bird::animateWings(bool gameHasBegun) {
-    static bool wingsState = 0;
     float secondsSinceLastWingAnimation;
-    if (gameHasBegun == 1)
+    if (gameHasBegun)
         secondsSinceLastWingAnimation = 0.1f;
     else
         secondsSinceLastWingAnimation = 0.25f;
     if (wingsAnimationGeneratingClock->getElapsedTime().asSeconds() > secondsSinceLastWingAnimation) {
-        if (wingsState == 0) {
+        if (!wingsUp) {
             birdSprite.setTexture(birdTextureUpFlap);
-            wingsState = 1;
+            wingsUp = true;
         }
         else {
             birdSprite.setTexture(birdTextureDownFlap);
-            wingsState = 0;
+            wingsUp = false;
         }
         wingsAnimationGeneratingClock->restart();
     }
@@ -63,7 +65,7 @@ void Bird::draw(sf::RenderWindow &window) {
     window.draw(birdSprite);
 }
 void Bird::reset() {
-    posY = 300;
+    posY = 350;
     velocity = 0;
     birdSprite.setRotation(0);
     rotationAngle = 0;
