@@ -25,9 +25,10 @@ void Bird::fly() {
 }
 
 void Bird::fall(float elapsedTime) {
-    if (velocity <= 500)
+    if (velocity <= 500) {
         velocity += elapsedTime * 2100;
-    else if (velocity > 500 && rotationAngle < 90) {
+    }
+    if (velocity > 500 && rotationAngle < 90) {
         velocity += elapsedTime * 5;
         rotationAngle += elapsedTime * 400;
     }
