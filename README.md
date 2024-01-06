@@ -50,13 +50,17 @@
 ## Tema 3
 
 #### Cerințe
-- [ ] 2 șabloane de proiectare (design patterns)
-- [ ] o clasă șablon cu sens; minim **2 instanțieri**
-  - [ ] preferabil și o funcție șablon (template) cu sens; minim 2 instanțieri
+- [x] 2 șabloane de proiectare (design patterns)
+- [x] o clasă șablon cu sens; minim **2 instanțieri**
+  - [x] preferabil și o funcție șablon (template) cu sens; minim 2 instanțieri
 <!-- - [ ] o specializare pe funcție/clasă șablon -->
-- [ ] tag de `git`: de exemplu `v0.3` sau `v1.0`
+- [x] tag de `git`: de exemplu `v0.3` sau `v1.0`
 
 ## Resurse
 
 - [SFML](https://github.com/SFML/SFML/tree/2.6.0) (Zlib)
-- adăugați trimiteri către resursele externe care v-au ajutat sau pe care le-ați folosit
+- https://www.sfml-dev.org/
+- https://github.com/samuelcust/flappy-bird-assets
+![1](https://github.com/BanuAdrian/proiect-oop-sfml/assets/66678108/d3e755b9-9be6-46dd-9c10-19c2c42c6b51)
+![2](https://github.com/BanuAdrian/proiect-oop-sfml/assets/66678108/f7c78dba-a7c0-4787-bff6-6f8341752940)
+![3](https://github.com/BanuAdrian/proiect-oop-sfml/assets/66678108/31e25a21-268a-4f9c-b651-132c86849d7f)
