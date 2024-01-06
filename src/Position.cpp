@@ -18,7 +18,7 @@ T Position<T>::getY() const {
 }
 
 template<class T>
-void Position<T>::setX(T localX) {
+[[maybe_unused]] void Position<T>::setX(T localX) {
     x = localX;
 }
 

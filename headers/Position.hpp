@@ -48,7 +48,7 @@ public:
      *
      * @param localX the new X
      */
-    void setX(T localX);
+    [[maybe_unused]] void setX(T localX);
 
     /**
      * \brief Setter for the position on Y axis.
