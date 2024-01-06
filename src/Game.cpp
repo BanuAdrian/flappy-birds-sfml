@@ -4,6 +4,7 @@
 
 #include "../headers/Game.hpp"
 #include <iostream>
+#include <utility>
 
 float Game::elapsedTime;
 int Game::score;
@@ -13,11 +14,13 @@ bool Game::isRunning;
 bool Game::hasBegun;
 
 Game::Game() {
-    bird = dynamic_cast<Bird*>(&yellowBird);
+    bird = birdFactory.create(YELLOW_BIRD);
+//    bird = dynamic_cast<Bird*>(&yellowBird);
     srand(time(nullptr));
     windowSettings();
     textSettings();
     initSettings();
+    currentCommand = nullptr;
 }
 
 void Game::windowSettings() {
@@ -58,6 +61,10 @@ void Game::initSettings() {
     currentBird = YELLOW_BIRD;
 }
 
+void Game::setCommand(std::shared_ptr<Command> newCommand) {
+    currentCommand = std::move(newCommand);
+}
+
 void Game::handleEvents() {
     sf::Event event;
     while(window.pollEvent(event)) {
@@ -65,20 +72,26 @@ void Game::handleEvents() {
             isRunning = false;
             window.close();
         }
-        else if(event.type == sf::Event::MouseButtonPressed || sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
+        else if(sf::Mouse::isButtonPressed(sf::Mouse::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Space)) {
             if (!hasBegun) {
                 hasBegun = true;
                 pipes.emplace_back(new Pipe);
                 pipeGeneratingClock->restart();
                 scoreGeneratingClock->restart();
             }
-            bird->fly();
+//            bird->fly();
+            setCommand(std::make_shared<FlyCommand>());
         }
         else if (sf::Keyboard::isKeyPressed(sf::Keyboard::F)) {
             if (hasBegun) {
-                bird->specialAbility();
+//                bird->specialAbility();
+                setCommand(std::make_shared<SpecialAbilityCommand>());
             }
         }
+    }
+    if (currentCommand != nullptr) {
+        currentCommand->execute(*this);
+        currentCommand = nullptr;
     }
 }
 void Game::handleTime() {
@@ -110,10 +123,11 @@ void Game::updateObjects() {
             pipe->update(elapsedTime);
         }
         if (pipeGeneratingClock->getElapsedTime().asSeconds() > 2) {
-            pipes.emplace_back(new Pipe);
+//            pipes.emplace_back(new Pipe);
+            pipes.emplace_back(std::make_shared<Pipe>());
             pipeGeneratingClock->restart();
             if (pipes.size() > 2) {
-                delete pipes[0];
+//                delete pipes[0];
                 pipes.erase(pipes.begin());
             }
         }
@@ -185,12 +199,12 @@ void Game::handleCollision() {
 }
 
 void Game::upgradeBird() {
-    if (highestScore >= blueBird.getScoreNeeded() && currentBird == YELLOW_BIRD) {
-        bird = dynamic_cast<Bird*>(&blueBird);
+    if (highestScore >= bird->getScoreNeededForNextBird() && currentBird == YELLOW_BIRD) {
+        bird = birdFactory.create(BLUE_BIRD, 3);
         currentBird = BLUE_BIRD;
     }
-    else if (highestScore >= redBird.getScoreNeeded() && currentBird == BLUE_BIRD) {
-        bird = dynamic_cast<Bird*>(&redBird);
+    else if (highestScore >= bird->getScoreNeededForNextBird() && currentBird == BLUE_BIRD) {
+        bird = birdFactory.create(RED_BIRD);
         currentBird = RED_BIRD;
     }
 }
@@ -248,7 +262,11 @@ void Game::start() {
 //    return out;
 //}
 
-Game::~Game() {
-    for (const auto & pipe : pipes)
-        delete pipe;
+//Game::~Game() {
+//    for (const auto & pipe : pipes)
+//        delete pipe;
+//}
+
+std::shared_ptr<Bird> Game::getBird() const {
+    return bird;
 }

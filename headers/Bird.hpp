@@ -1,191 +1,190 @@
 /**
- * Nume fisier: Bird.hpp
- * Autor: Banu Constantin-Adrian
- * Data: 17/11/2023
- * Descriere:
- * \brief Reprezinta clasa de baza/interfata pentru caracterul jocului.
+ * File name: Bird.hpp
+ * Author: Banu Constantin-Adrian
+ * Date: 17/11/2023
+ * Description:
+ * \brief Represents the base class/interface for the game character.
  *
- * Aceasta clasa se ocupa de reprezentarea in joc, desenarea si furnizarea caracteristicilor pentru fiecare
- * tip de pasare.
+ * This class handles the in-game representation, drawing, and providing characteristics for each
+ * type of bird.
  */
 
 #ifndef OOP_BIRD_HPP
 #define OOP_BIRD_HPP
 
+template<class T>
+class Position;
+
 #include <SFML/Graphics.hpp>
 #include <memory>
 #include "Exceptions.hpp"
+#include "Position.hpp"
 
 class Bird {
 protected:
     /**
-     * \brief Textura pasarii cu aripile in sus.
+     * \brief Texture of the bird with wings up.
      */
     sf::Texture birdTextureUpFlap;
 
     /**
-     * \brief Textura pasarii cu aripile centrate;
+     * \brief Texture of the bird with centered wings.
      */
     sf::Texture birdTextureMidFlap;
 
     /**
-     * \brief Textura pasarii cu aripile in jos.
+     * \brief Texture of the bird with wings down.
      */
     sf::Texture birdTextureDownFlap;
 
     /**
-     * \brief Sprite-ul pasarii.
+     * \brief The bird's sprite.
      */
     sf::Sprite birdSprite;
 
     /**
-     * \brief Ceasul folosit pentru animatia aripilor.
+     * \brief Clock used for wing animation.
      */
     std::shared_ptr<sf::Clock> wingsAnimationGeneratingClock;
 
     /**
-     * \brief Scorul necesar ca jucatorul sa poata faca upgrade la acest caracter.
+     * \brief Score needed for the player to upgrade to the next character.
      */
-    int scoreNeeded;
+    int scoreNeededForNextBird;
 
     /**
-     * \brief Determina daca aripile sunt orientate in sus sau in jos.
+     * \brief Determines if the wings are oriented up or down.
      */
     bool wingsUp;
 
     /**
-     * \brief Pozitia pe axa OX.
+     * \brief Position of the character.
      */
-    float posX;
+    Position<float> position;
 
     /**
-     * \brief Pozitia pe axa OY.
-     */
-    float posY;
-
-    /**
-     * \brief Viteza caracterului.
+     * \brief Character's velocity.
      */
     float velocity;
 
     /**
-     * \brief Unghiul de rotatie al sprite-ului.
+     * \brief Rotation angle of the sprite.
      */
     float rotationAngle;
 
 public:
     /**
-     * \brief Construieste o noua pasare.
+     * \brief Constructs a new bird.
      *
-     * @param localScoreNeeded Scorul necesar pentru aceasta pasare.
+     * @param localScoreNeeded Score needed for the next bird.
      */
     explicit Bird(int localScoreNeeded = 0);
 
     /**
-     * \brief Destructor virtual.
+     * \brief Virtual destructor.
      */
     virtual ~Bird();
 
     /**
-     * \brief Determina abilitatea pasarii de a zbura.
+     * \brief Determines the ability of the bird to fly.
      */
     void fly();
 
     /**
-     * \brief Determina caderea pasarii.
+     * \brief Determines the falling of the bird.
      *
-     * @param elapsedTime Timpul dintre ultimele 2 cadre ale jocului, utilizat pentru asigurarea unei miscari fluente.
+     * @param elapsedTime Time between the last 2 frames of the game, used to ensure smooth movement.
      */
     void fall(float elapsedTime);
 
     /**
-     * \brief Actualizeaza pozitia pasarii.
+     * \brief Updates the position of the bird.
      */
     void update();
 
     /**
-     * \brief Deseneaza caracterul pe ecran.
+     * \brief Draws the character on the screen.
      *
-     * @param window Furnizeaza o referinta catre fereastra jocului.
+     * @param window Provides a reference to the game window.
      */
     void draw(sf::RenderWindow &window);
 
     /**
-     * \brief Permite resetarea atributelor in momentul coliziunii.
+     * \brief Allows resetting the attributes at the moment of collision.
      */
     void reset();
 
     /**
-     * \brief Implementeaza animatia aripilor.
+     * \brief Implements wing animation.
      *
-     * @param gameHasBegun Comunica starea jocului.
+     * @param gameHasBegun Communicates the game state.
      */
     void animateWings(bool gameHasBegun);
 
     /**
-     * \brief Getter pentru sprite-ul caracterului.
+     * \brief Getter for the character's sprite.
      *
-     * @return Referinta constanta catre sprite-ul caracterului.
+     * @return Constant reference to the character's sprite.
      */
     const sf::Sprite & getBirdSprite() const;
 
     /**
-     * \brief "Constructor" virtual
+     * \brief Virtual "constructor".
      *
-     * @return Pointer la clasa de baza Bird.
+     * @return Pointer to the base class Bird.
      */
 //    virtual Bird* clone() const = 0;
 
     /**
-     * \brief Getter pentru numarul de vieti al pasarii.
+     * \brief Getter for the number of lives of the bird.
      *
-     * @return Strict 0 pentru clasele derivate "YellowBird" si "BlueBird"; >= 0 pentru clasa derivata "RedBird".
+     * @return Strictly 0 for the derived classes "YellowBird" and "BlueBird"; >= 0 for the derived class "RedBird".
      */
     virtual int getLives() const = 0;
 
     /**
-     * \brief Getter pentru scorul necesar.
+     * \brief Getter for the needed score.
      *
-     * @return >= 0 in functie de caracterul curent.
+     * @return >= 0 depending on the current character.
      */
-    virtual int getScoreNeeded() const = 0;
+    virtual int getScoreNeededForNextBird() const = 0;
 
     /**
-     * \brief Implementarea abilitatii de a reinvia in cazul clasei derivate "RedBird".
+     * \brief Implements the ability to revive in the case of the derived class "RedBird."
      */
     virtual void revive() = 0;
 
     /**
-     * \brief Gestionarea coliziunii.
+     * \brief Handles collision.
      */
     virtual void handleCollision() = 0;
 
     /**
-     * \brief Afisarea unui text special in functie de caracterul curent.
+     * \brief Displays special text depending on the current character.
      *
-     * @param window Furnieaza o referinta catre fereastra jocului.
+     * @param window Provides a reference to the game window.
      */
     virtual void displaySpecialText(sf::RenderWindow &window) = 0;
 
     /**
-     * \brief Implementarea abilitatii speciale pentru clasa derivata "BlueBird".
+     * \brief Implements the special ability for the derived class "BlueBird."
      */
     virtual void specialAbility() = 0;
 
     /**
-     * \brief Incarcarea transparentei pentru clasa derivata "BlueBird".
+     * \brief Loads transparency for the derived class "BlueBird".
      */
     virtual void loadTransparence() = 0;
 
     /**
-     * \brief Incarcarea vietilor pentru clasa derivata "RedBird".
+     * \brief Loads lives for the derived class "RedBird".
      */
     virtual void loadLives() = 0;
 
     /**
-     * \brief Verifica starea de transparenta.
+     * \brief Checks the transparency state.
      *
-     * @return True daca pasarea este transparenta si False in caz contrar.
+     * @return True if the bird is transparent and False otherwise.
      */
     virtual bool isTransparent() const = 0;
 

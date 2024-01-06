@@ -19,3 +19,7 @@ const char* IconLoadException::what() const noexcept {
 const char* WrongFuncException::what() const noexcept {
     return "Wrong function call!";
 }
+
+const char* UnknownBirdException::what() const noexcept {
+    return "Failed to create the particular bird!";
+}

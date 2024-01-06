@@ -5,7 +5,7 @@
 #include "../headers/YellowBird.hpp"
 #include <iostream>
 
-YellowBird::YellowBird(int localScoreNeeded) : Bird(localScoreNeeded) {
+YellowBird::YellowBird(int localScoreNeededForNextBird) : Bird(localScoreNeededForNextBird) {
     if (!birdTextureUpFlap.loadFromFile("../assets/yellow-bird/yellowbird-upflap.png")) {
         throw TextureLoadException();
     }
@@ -23,8 +23,8 @@ YellowBird::YellowBird(int localScoreNeeded) : Bird(localScoreNeeded) {
 //    return new YellowBird(*this);
 //}
 
-int YellowBird::getScoreNeeded() const {
-    return scoreNeeded;
+int YellowBird::getScoreNeededForNextBird() const {
+    return scoreNeededForNextBird;
 }
 
 int YellowBird::getLives() const {

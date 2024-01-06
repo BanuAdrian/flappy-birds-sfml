@@ -1,10 +1,10 @@
 /**
- * Nume fisier: Exceptions.hpp
- * Autor: Banu Constantin-Adrian
- * Data: 30/11/2023
- * Descriere:
+ * File name: Exceptions.hpp
+ * Author: Banu Constantin-Adrian
+ * Date: 30/11/2023
+ * Description:
  *
- * \brief Reprezinta clasa care se ocupa cu gestionarea exceptiilor.
+ * \brief Represents the class responsible for exception handling.
  */
 
 #ifndef OOP_EXCEPTIONS_HPP
@@ -15,8 +15,8 @@
 class TextureLoadException : public std::exception {
 public:
     /**
-     * \brief Afiseaza un mesaj sugestiv atunci cand o textura nu s-a putut incarca corect.
-     * @return Mesajul pentru utilizator.
+     * \brief Displays a suggestive message when a texture fails to load correctly.
+     * @return User-friendly message.
      */
     const char* what() const noexcept;
 };
@@ -24,8 +24,8 @@ public:
 class FontLoadException : public std::exception {
 public:
     /**
-     * \brief Afiseaza un mesaj sugestiv atunci cand un font nu s-a putut incarca corect.
-     * @return Mesajul pentru utilizator.
+     * \brief Displays a suggestive message when a font fails to load correctly.
+     * @return User-friendly message.
      */
     const char* what() const noexcept;
 };
@@ -33,8 +33,8 @@ public:
 class IconLoadException : public std::exception {
 public:
     /**
-     * \brief Afiseaza un mesaj sugestiv atunci cand iconita jocului nu s-a putut incarca corect.
-     * @return Mesajul pentru utilizator.
+     * \brief Displays a suggestive message when the game icon fails to load correctly.
+     * @return User-friendly message.
      */
     const char* what() const noexcept;
 };
@@ -42,9 +42,19 @@ public:
 class WrongFuncException : public std::exception {
 public:
     /**
-     * \brief Afiseaza un mesaj sugestiv atunci cand o functie nu este apelata din clasa derivata corespunzatoare.
-     * @return Mesajul pentru utilizator.
+     * \brief Displays a suggestive message when a function is not called from the appropriate derived class.
+     * @return User-friendly message.
      */
     const char* what() const noexcept;
 };
+
+class UnknownBirdException : public std::exception {
+public:
+    /**
+     * \brief Displays a suggestive message when the bird sent as an argument to the factory class creation function does not exist.
+     * @return User-friendly message.
+     */
+    const char* what() const noexcept;
+};
+
 #endif //OOP_EXCEPTIONS_HPP

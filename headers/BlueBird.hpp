@@ -1,11 +1,11 @@
 /**
- * Nume fisier: BlueBird.hpp
- * Autor: Banu Constantin-Adrian
- * Data: 17/11/2023
- * Descriere:
- * \brief Reprezinta pasarea albastra.
+ * File name: BlueBird.hpp
+ * Author: Banu Constantin-Adrian
+ * Date: 17/11/2023
+ * Description:
+ * \brief Represents the blue bird.
  *
- * Aceasta clasa mosteneste clasa de baza "Bird" si, in plus, implementeaza transparenta specifica acestui tip de pasare.
+ * This class inherits from the base class "Bird" and additionally implements transparency specific to this type of bird.
  */
 
 #ifndef OOP_BLUEBIRD_HPP
@@ -17,99 +17,99 @@
 class BlueBird : public Bird{
 private:
     /**
-     * \brief Specifica daca abilitatea de transparenta este pregatita.
+     * \brief Specifies if the transparency ability is ready.
      */
     bool transparenceReady;
 
     /**
-     * \brief Specifica daca pasarea este transparenta la momentul respectiv.
+     * \brief Specifies if the bird is transparent at the moment.
      */
     bool transparentNow;
 
     /**
-     * \brief Textul pentru a afisa un mesaj sugestiv in legatura cu disponibilitatea abilitatii de transparenta.
+     * \brief Text for displaying a suggestive message regarding the availability of the transparency ability.
      */
     sf::Text transparenceText;
 
     /**
-     * \brief Fontul folosit pentru text.
+     * \brief The font used for text.
      */
     sf::Font font;
 
     /**
-     * \brief Ceasul folosit pentru a gestiona transparenta.
+     * \brief The clock used to manage transparency.
      */
     std::shared_ptr<sf::Clock> transparenceHandlingClock;
 
 public:
     /**
-     * \brief Construieste o noua pasare albastra.
-     * @param localScoreNeeded Scorul necesar pentru o astfel de pasare.
+     * \brief Constructs a new blue bird.
+     * @param localScoreNeededForNextBird Score needed for the next bird.
      */
-    explicit BlueBird(int localScoreNeeded = 2);
+    explicit BlueBird(int localScoreNeededForNextBird = 5);
 
     /**
-     * \brief Destructorul specific acestei clase derivate.
+     * \brief Destructor specific to this derived class.
      */
     ~BlueBird() override;
 
     /**
-     * \brief "Constructor" virtual
+     * \brief Virtual "constructor".
      *
-     * @return Pointer la clasa derivata "BlueBird".
+     * @return Pointer to the derived class "BlueBird".
      */
 //    BlueBird* clone() const override;
 
     /**
-     * \brief Getter pentru numarul de vieti al pasarii.
+     * \brief Getter for the number of lives of the bird.
      *
-     * @return 0, deoarece este o abilitate specifica clasei derivate "RedBird"
+     * @return 0, as it is a specific ability of the derived class "RedBird".
      */
     int getLives() const override;
 
     /**
-     * \brief Getter pentru scorul necesar.
+     * \brief Getter for the required score.
      *
-     * @return >= 0 in functie de caracterul curent.
+     * @return >= 0 depending on the current character.
      */
-    int getScoreNeeded() const override;
+    int getScoreNeededForNextBird() const override;
 
     /**
-     * \brief Implementarea abilitatii de a reinvia in cazul clasei derivate RedBird.
+     * \brief Implementation of the ability to revive for the derived class RedBird.
      */
     void revive() override;
 
     /**
-     * \brief Gestionarea coliziunii.
+     * \brief Collision management.
      */
     void handleCollision() override;
 
     /**
-     * \brief Incarcarea transparentei.
+     * \brief Loading transparency.
      */
     void loadTransparence() override;
 
     /**
-     * \brief Incarcarea vietilor pentru clasa derivata "RedBird".
+     * \brief Loading lives for the derived class "RedBird".
      */
     void loadLives() override;
 
     /**
-     * \brief Verifica starea de transparenta.
+     * \brief Checks the transparency status.
      *
-     * @return True daca pasarea este transparenta si False in caz contrar.
+     * @return True if the bird is transparent and False otherwise.
      */
     bool isTransparent() const override;
 
     /**
-     * \brief Afiseaza disponibilitatea transparentei.
+     * \brief Displays transparency availability.
      *
-     * @param window Furnieaza o referinta catre fereastra jocului.
+     * @param window Provides a reference to the game window.
      */
     void displaySpecialText(sf::RenderWindow &window) override;
 
     /**
-     * \brief Implementarea abilitatii speciale pentru clasa derivata "BlueBird".
+     * \brief Implementation of the special ability for the derived class "BlueBird".
      */
     void specialAbility() override;
 };

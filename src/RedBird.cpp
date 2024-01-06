@@ -7,7 +7,7 @@
 
 int RedBird::lives;
 
-RedBird::RedBird(int localScoreNeeded) : Bird(localScoreNeeded) {
+RedBird::RedBird(int localScoreNeededForNextBird) : Bird(localScoreNeededForNextBird) {
     if (!birdTextureUpFlap.loadFromFile("../assets/red-bird/redbird-upflap.png")) {
         throw TextureLoadException();
     }
@@ -32,8 +32,8 @@ RedBird::RedBird(int localScoreNeeded) : Bird(localScoreNeeded) {
 //    return new RedBird(*this);
 //}
 
-int RedBird::getScoreNeeded() const {
-    return scoreNeeded;
+int RedBird::getScoreNeededForNextBird() const {
+    return scoreNeededForNextBird;
 }
 
 int RedBird::getLives() const {
@@ -41,12 +41,14 @@ int RedBird::getLives() const {
 }
 
 void RedBird::revive() {
-    posY = 300;
+//    posY = 300;
+    position.setY(300);
     velocity = 0;
     lives--;
     rotationAngle = 0;
     birdSprite.setRotation(0);
-    birdSprite.setPosition(posX, posY);
+    birdSprite.setPosition(position.getX(), position.getY());
+//    birdSprite.setPosition(posX, posY);
     birdSprite.setTexture(birdTextureMidFlap);
 }
 

@@ -1,11 +1,11 @@
 /**
- * Nume fisier: YellowBird.hpp
- * Autor: Banu Constantin-Adrian
- * Data: 17/11/2023
- * Descriere:
- * \brief Reprezinta pasarea galbena.
+ * File name: YellowBird.hpp
+ * Author: Banu Constantin-Adrian
+ * Date: 17/11/2023
+ * Description:
+ * \brief Represents the yellow bird.
  *
- * Aceasta clasa mosteneste clasa de baza "Bird".
+ * This class inherits from the base class "Bird".
  */
 
 #ifndef OOP_YELLOWBIRD_HPP
@@ -13,79 +13,77 @@
 
 #include "Bird.hpp"
 
-class YellowBird : public Bird{
+class YellowBird : public Bird {
 public:
     /**
-     * \brief Creeaza o pasare galbena.
+     * \brief Creates a yellow bird.
      */
-    explicit YellowBird(int localScoreNeeded = 0);
+    explicit YellowBird(int localScoreNeededForNextBird = 2);
 
     /**
-     * \brief Destructorul specific acestei clase derivate.
+     * \brief Destructor specific to this derived class.
      */
     ~YellowBird() override;
 
     /**
-     * \brief "Constructor" virtual
+     * \brief Virtual "constructor".
      *
-     * @return Pointer la clasa derivata "YellowBird".
+     * @return Pointer to the derived class "YellowBird".
      */
 //    YellowBird* clone() const override;
 
     /**
-     * \brief Getter pentru numarul de vieti al pasarii.
+     * \brief Getter for the number of lives of the bird.
      *
-     * @return 0, deoarece este o abilitate specifica clasei derivate "RedBird"
+     * @return 0, since it is a specific ability of the derived class "RedBird".
      */
     int getLives() const override;
 
     /**
-     * \brief Getter pentru scorul necesar.
+     * \brief Getter for the required score.
      *
-     * @return 0, deoarece este caracterul de inceput.
+     * @return 0, since it is the starting character.
      */
-    int getScoreNeeded() const override;
+    int getScoreNeededForNextBird() const override;
 
     /**
-     * \brief Implementarea abilitatii de a reinvia in cazul clasei derivate "RedBird".
+     * \brief Implementation of the revive ability in the case of the derived class "RedBird".
      */
     void revive() override;
 
     /**
-     * \brief Gestionarea coliziunii.
+     * \brief Collision management.
      */
     void handleCollision() override;
 
     /**
-     * \brief Incarcarea transparentei pentru clasa derivata "BlueBird".
+     * \brief Loading transparency for the derived class "BlueBird".
      */
     void loadTransparence() override;
 
     /**
-     * \brief Incarcarea vietilor pentru clasa derivata "RedBird".
+     * \brief Loading lives for the derived class "RedBird".
      */
     void loadLives() override;
 
     /**
-     * \brief Afisarea unui text special in functie de caracterul curent.
+     * \brief Displaying special text depending on the current character.
      *
-     * @param window Furnieaza o referinta catre fereastra jocului.
+     * @param window Provides a reference to the game window.
      */
     void displaySpecialText(sf::RenderWindow &window) override;
 
     /**
-     * \brief Implementarea abilitatii speciale pentru clasa derivata "BlueBird".
+     * \brief Implementation of the special ability for the derived class "BlueBird".
      */
     void specialAbility() override;
 
     /**
-     * \brief Verifica starea de transparenta.
+     * \brief Checks the transparency state.
      *
-     * @return True daca pasarea este transparenta si False in caz contrar.
+     * @return True if the bird is transparent and False otherwise.
      */
     bool isTransparent() const override;
 };
-
-
 
 #endif //OOP_YELLOWBIRD_HPP

@@ -1,11 +1,11 @@
 /**
- * Nume fisier: RedBird.hpp
- * Autor: Banu Constantin-Adrian
- * Data: 17/11/2023
- * Descriere:
- * \brief Reprezinta pasarea rosie.
+ * File name: RedBird.hpp
+ * Author: Banu Constantin-Adrian
+ * Date: 17/11/2023
+ * Description:
+ * \brief Represents the red bird.
  *
- * Aceasta clasa mosteneste clasa de baza "Bird" si, in plus, implementeaza abilitatea de a reinvia specifica acestui tip de pasare.
+ * This class inherits from the base class "Bird" and additionally implements the revive ability specific to this type of bird.
  */
 
 #ifndef OOP_REDBIRD_HPP
@@ -13,103 +13,99 @@
 
 #include "Bird.hpp"
 
-class RedBird : public Bird{
+class RedBird : public Bird {
 private:
     /**
-     * \brief Numarul de vieti ale caracterului la un anumit moment.
+     * \brief Number of lives of the character at a certain moment.
      */
     static int lives;
 
     /**
-     * \brief Textul utilizat pentru afisarea numarului de vieti.
+     * \brief Text used for displaying the number of lives.
      */
     sf::Text livesText;
 
     /**
-     * \brief Fontul textului.
+     * \brief Font of the text.
      */
     sf::Font font;
 
     /**
-     * \brief Ceas care se ocupa de generarea vietilor.
+     * \brief Clock that handles lives generation.
      */
     std::shared_ptr<sf::Clock> livesGeneratingClock;
 
 public:
     /**
-     * \brief Creeaza o pasare rosie.
-     * @param localScoreNeeded Scorul necesar pentru o astfel de pasare.
+     * \brief Creates a red bird.
+     * @param localScoreNeeded Score needed for such a bird.
      */
-    explicit RedBird(int localScoreNeeded = 5);
+    explicit RedBird(int localScoreNeededForNextBird = 0);
 
     /**
-     * \brief Destructorul specific acestei clase derivate.
+     * \brief Destructor specific to this derived class.
      */
     ~RedBird() override;
 
     /**
-     * \brief "Constructor" virtual
+     * \brief Virtual "constructor".
      *
-     * @return Pointer la clasa derivata "RedBird".
+     * @return Pointer to the derived class "RedBird".
      */
 //    RedBird* clone() const override;
 
     /**
-     * \brief Getter pentru numarul de vieti al pasarii.
+     * \brief Getter for the number of lives of the bird.
      *
-     * @return >= 0, in functie de numarul de vieti disponibile la un anumit moment.
+     * @return >= 0, depending on the number of lives available at a certain moment.
      */
     int getLives() const override;
 
     /**
-     * \brief Getter pentru scorul necesar.
+     * \brief Getter for the required score.
      *
-     * @return >= 0 in functie de caracterul curent.
+     * @return >= 0 depending on the current character.
      */
-    int getScoreNeeded() const override;
+    int getScoreNeededForNextBird() const override;
 
     /**
-     * \brief Implementarea abilitatii de a reinvia.
+     * \brief Implementation of the revive ability.
      */
     void revive() override;
 
     /**
-     * \brief Gestionarea coliziunii.
+     * \brief Collision management.
      */
     void handleCollision() override;
 
     /**
-     * \brief Incarcarea transparentei in cazul clasei derivate "BlueBird".
+     * \brief Loading transparency in the case of the derived class "BlueBird".
      */
     void loadTransparence() override;
 
     /**
-     * \brief Incarcarea vietilor.
+     * \brief Loading lives.
      */
     void loadLives() override;
 
     /**
-     * \brief Verifica starea de transparenta.
+     * \brief Checks the transparency state.
      *
-     * @return True daca pasarea este transparenta si False in caz contrar.
+     * @return True if the bird is transparent and False otherwise.
      */
     bool isTransparent() const override;
 
     /**
-     * \brief Afiseaza numarul de vieti disponibile.
+     * \brief Displays the number of available lives.
      *
-     * @param window Furnieaza o referinta catre fereastra jocului.
+     * @param window Provides a reference to the game window.
      */
     void displaySpecialText(sf::RenderWindow &window) override;
 
     /**
-     * \brief Implementarea transparentei.
+     * \brief Implementation of transparency.
      */
     void specialAbility() override;
-
-
-
 };
-
 
 #endif //OOP_REDBIRD_HPP

@@ -1,11 +1,11 @@
 /**
- * Nume fisier: Background.hpp
- * Autor: Banu Constantin-Adrian
- * Data: 11/11/2023
- * Descriere:
- * \brief Reprezinta fundalul jocului.
+ * File name: Background.hpp
+ * Author: Banu Constantin-Adrian
+ * Date: 11/11/2023
+ * Description:
+ * \brief Represents the game background.
  *
- * Aceasta clasa se ocupa de implementarea si desenarea fundalului pe ecran.
+ * This class handles the implementation and drawing of the background on the screen.
  *
  */
 
@@ -18,25 +18,25 @@
 class Background {
 protected:
     /**
-     * \brief Textura fundalului.
+     * \brief Background texture.
      */
     sf::Texture bgTexture;
 
     /**
-     * \brief Sprite-ul fundalului.
+     * \brief Background sprite.
      */
     sf::Sprite bgSprite;
 
 public:
     /**
-     * \brief Produce un nou fundal.
+     * \brief Generates a new background.
      */
     Background();
 
     /**
-     * \brief Deseneaza fundalul pe ecran.
+     * \brief Draws the background on the screen.
      *
-     * @param window Furnizeaza o referinta catre fereastra jocului.
+     * @param window Provides a reference to the game window.
      */
     void draw(sf::RenderWindow& window);
 
@@ -45,7 +45,5 @@ public:
 //    Background& operator=(Background other);
 //    friend std::ostream& operator<<(std::ostream& out, const Background& background);
 };
-
-
 
 #endif //OOP_BACKGROUND_HPP

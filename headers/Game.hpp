@@ -1,26 +1,28 @@
 /**
- * Nume fisier: Game.hpp
- * Autor: Banu Constantin-Adrian
- * Data: 11/11/2023
- * Descriere:
- * \brief Reprezinta jocul propriu-zis.
+ * File name: Game.hpp
+ * Author: Banu Constantin-Adrian
+ * Date: 11/11/2023
+ * Description:
+ * \brief Represents the actual game.
  *
- * Aceasta clasa se ocupa de functionalitatile jocului.
+ * This class handles the game functionalities.
  */
+#pragma once
 
 #ifndef OOP_GAME_HPP
 #define OOP_GAME_HPP
+
+class Command;
 
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <memory>
 #include "Ground.hpp"
-#include "YellowBird.hpp"
-#include "BlueBird.hpp"
-#include "RedBird.hpp"
+#include "BirdFactory.hpp"
 #include "Pipe.hpp"
 #include "Background.hpp"
 #include "Exceptions.hpp"
+#include "Command.hpp"
 
 #define YELLOW_BIRD 1
 #define RED_BIRD 2
@@ -29,215 +31,221 @@
 class Game {
 private:
     /**
-     * \brief Fereastra jocului.
+     * \brief Game window.
      */
     sf::RenderWindow window;
 
     /**
-     * \brief Textul pentru scor.
+     * \brief Score text.
      */
     sf::Text scoreText;
 
     /**
-     * \brief Textul pentru cel mai mare scor obtinut de jucator.
+     * \brief Text for the highest score obtained by the player.
      */
     sf::Text highestScoreText;
 
     /**
-     * \brief Fontul pentru text.
+     * \brief Font for text.
      */
     sf::Font font;
 
     /**
-     * \brief Ceasul folosit pentru gestionarea cadrelor jocului.
+     * \brief Clock used for managing game frames.
      */
-    std::shared_ptr<sf::Clock>frameHandlingClock;
+    std::shared_ptr<sf::Clock> frameHandlingClock;
 
     /**
-     * \brief Ceasul folosit pentru generarea tevilor.
+     * \brief Clock used for generating pipes.
      */
-    std::shared_ptr<sf::Clock>pipeGeneratingClock;
+    std::shared_ptr<sf::Clock> pipeGeneratingClock;
 
     /**
-     * \brief Ceasul folosit pentru generarea scorului.
+     * \brief Clock used for generating the score.
      *
-     * Din moment ce obstacolele sunt generate la o perioada constanta de timp, scorul creste in functie de acest aspect.
+     * Since obstacles are generated at a constant time interval, the score increases based on this aspect.
      */
-    std::shared_ptr<sf::Clock>scoreGeneratingClock;
+    std::shared_ptr<sf::Clock> scoreGeneratingClock;
 
     /**
-     * \brief Obstacolele jocului reprezentate de tevi.
+     * \brief Game obstacles represented by pipes.
      */
-    std::vector<Pipe*> pipes;
+//    std::vector<Pipe*> pipes;
+    std::vector<std::shared_ptr<Pipe>> pipes;
+    /**
+     * \brief The object from the factory method.
+     */
+    BirdFactory birdFactory;
 
     /**
-     * \brief Caracterul curent.
+     * \brief Current character.
      */
-    Bird *bird;
+    std::shared_ptr<Bird> bird;
 
     /**
-     * \brief Pasarea rosie.
+     * \brief Current command to be executed.
      */
-    RedBird redBird;
+    std::shared_ptr<Command> currentCommand;
 
     /**
-     * \brief Pasarea galbena.
-     */
-    YellowBird yellowBird;
-
-    /**
-     * \brief Pasarea albastra.
-     */
-    BlueBird blueBird;
-
-    /**
-     * \brief Fundalul jocului.
+     * \brief Game background.
      */
     Background background;
 
     /**
-     * \brief Solul jocului.
+     * \brief Game ground.
      */
     Ground ground;
 
     /**
-     * \brief Timpul dintre ultimele 2 cadre ale jocului, utilizat pentru asigurarea unor miscari fluente ale sprite-urilor.
+     * \brief Time between the last 2 game frames, used to ensure smooth movement of sprites.
      */
     static float elapsedTime;
 
     /**
-     * \brief Specifica daca jocul ruleaza.
+     * \brief Specifies if the game is running.
      */
     static bool isRunning;
 
     /**
-     * \brief Specifica daca jocul a inceput.
+     * \brief Specifies if the game has started.
      */
     static bool hasBegun;
 
     /**
-     * \brief Scorul obtinut inainte de o coliziune.
+     * \brief Score obtained before a collision.
      */
     static int score;
 
     /**
-     * \brief Cel mai mare scor obtinut de jucator pentru sesiunea respectiva de joc.
+     * \brief The highest score obtained by the player for the current game session.
      */
     static int highestScore;
 
     /**
-     * \brief Specifica pasarea curenta.
+     * \brief Specifies the current bird.
      */
     static int currentBird;
 
 public:
     /**
-     * \brief Creeaza un joc nou.
+     * \brief Creates a new game.
      */
     Game();
 
     /**
-     * \brief Destructorul jocului.
+     * \brief Game destructor.
      */
-    ~Game();
+    ~Game() = default;
 
     /**
-     * \brief Detecteaza coliziunea cu solul.
-     * @return True daca pasarea s-a lovit de sol si False in caz contrar.
+     * \brief Detects collision with the ground.
+     * @return True if the bird hits the ground and False otherwise.
      */
     bool groundCollision() const;
 
     /**
-     * \brief Detecteaza coliziunea cu tevile.
-     * @return True daca pasarea s-a lovit de tevi si False in caz contrar.
+     * \brief Detects collision with pipes.
+     * @return True if the bird hits the pipes and False otherwise.
      */
     bool pipeCollision() const;
 
     /**
-     * \brief Detecteaza coliziunea cu limitele ecranului.
-     * @return True daca pasarea urma sa depaseasca limitele ecranului si False in caz contrar.
+     * \brief Detects collision with screen boundaries.
+     * @return True if the bird is about to exceed the screen boundaries and False otherwise.
      */
     bool outOfScreenCollision() const;
 
     /**
-     * \brief Furnizeaza setarile ferestrei.
+     * \brief Getter for the current character.
+     * @return Smart pointer to the current character.
+     */
+    std::shared_ptr<Bird> getBird() const;
+
+    /**
+     * \brief Setter for the command to be executed.
+     */
+    void setCommand(std::shared_ptr<Command> newCommand);
+
+    /**
+     * \brief Provides window settings.
      */
     void windowSettings();
 
     /**
-     * \brief Furnizeaza setarile textului.
+     * \brief Provides text settings.
      */
     void textSettings();
 
     /**
-     * \brief Furnizeaza valori initiale pentru atributele jocului.
+     * \brief Provides initial values for game attributes.
      */
     void initSettings();
 
     /**
-     * \brief Gestioneaza evenimentele din cadrul ferestrei jocului.
+     * \brief Handles events within the game window.
      *
-     * Evenimentele pot fi: inchiderea ferestrei, apasarea unui buton sau a unui click.
+     * Events can be: closing the window, pressing a button, or clicking.
      */
     void handleEvents();
 
     /**
-     * \brief Gestioneaza timpul dintre ultimele doua frame-uri ale jocului.
+     * \brief Handles the time between the last two frames of the game.
      */
     void handleTime();
 
     /**
-     * \brief Trateaza textul afisat.
+     * \brief Handles the displayed text.
      */
     void handleText();
 
     /**
-     * \brief Gestioneaza scorul.
+     * \brief Handles the score.
      */
     void handleScore();
 
     /**
-     * \brief Trateaza coliziunea cu obstacolele.
+     * \brief Handles collision with obstacles.
      */
     void handleCollision();
 
     /**
-     * \brief Verifica orice tip de coliziune.
+     * \brief Checks for any type of collision.
      */
     void checkCollision();
 
     /**
-     * \brief Actualizeaza obiectele jocului.
+     * \brief Updates game objects.
      */
     void updateObjects();
 
     /**
-     * \brief Deseneaza obiectele jocului.
+     * \brief Draws game objects.
      */
     void drawObjects();
 
     /**
-     * \brief Randeaza scenele jocului.
+     * \brief Renders game scenes.
      */
     void render();
 
     /**
-     * \brief Actualizeaza caracterul in functie de cel mai mare scor obtinut de jucator.
+     * \brief Updates the character based on the player's highest score.
      */
     void upgradeBird();
 
     /**
-     * \brief Incepe jocul.
+     * \brief Starts the game.
      */
     void start();
 
     /**
-     * \brief Actualizeaza cel mai mare scor obtinut de jucator.
+     * \brief Updates the player's highest score.
      */
     static void updateHighestScore();
 
     /**
-     * \brief Reseteaza scorul.
+     * \brief Resets the score.
      */
     static void resetScore();
 
@@ -246,7 +254,5 @@ public:
 //    friend std::ostream& operator<<(std::ostream& out, const Game& game);
 //    friend void swap(Game& gameA, Game& gameB);
 };
-
-
 
 #endif //OOP_GAME_HPP

@@ -1,11 +1,11 @@
 /**
- * Nume fisier: Ground.hpp
- * Autor: Banu Constantin-Adrian
- * Data: 11/11/2023
- * Descriere:
- * \brief Reprezinta solul jocului.
+ * File name: Ground.hpp
+ * Author: Banu Constantin-Adrian
+ * Date: 11/11/2023
+ * Description:
+ * \brief Represents the game ground.
  *
- * Aceasta clasa se ocupa de implementarea si desenarea solului pe ecran.
+ * This class handles the implementation and drawing of the ground on the screen.
  */
 
 #ifndef OOP_GROUND_HPP
@@ -17,50 +17,51 @@
 class Ground {
 private:
     /**
-     * \brief Textura solului.
+     * \brief Ground texture.
      */
     sf::Texture grTexture;
 
     /**
-     * \brief Sprite-ul solului.
+     * \brief Ground sprite.
      */
     sf::Sprite grSprite;
 
     /**
-     * \brief Diferenta pe axa OX intre doua sprite-uri ale solului.
+     * \brief Offset on the X-axis between two ground sprites.
      */
     static float offsetX;
 
     /**
-     * \brief Diferenta pe axa OY intre doua sprite-uri ale solului.
+     * \brief Offset on the Y-axis between two ground sprites.
      */
     static float offsetY;
+
 public:
     /**
-     * \brief Creeaza un sol.
+     * \brief Creates the ground.
      */
     Ground();
 
     /**
-     * \brief Destructor pentru sol.
+     * \brief Ground destructor.
      */
     ~Ground();
 
     /**
-     * \brief Miscarea solului.
-     * @param elapsedTime Timpul dintre ultimele 2 cadre ale jocului, utilizat pentru asigurarea unei miscari fluente.
+     * \brief Moves the ground.
+     * @param elapsedTime Time between the last 2 frames of the game, used to ensure smooth movement.
      */
     void move(float elapsedTime);
 
     /**
-     * \brief Desenarea solului pe ecran.
-     * @param window Furnizeaza o referinta catre fereastra jocului.
+     * \brief Draws the ground on the screen.
+     * @param window Provides a reference to the game window.
      */
     void draw(sf::RenderWindow& window);
 
     /**
-     * Getter pentru sprite-ul solului.
-     * @return Referinta constanta catre sprite-ul solului.
+     * Getter for the ground sprite.
+     * @return Constant reference to the ground sprite.
      */
     const sf::Sprite & getGroundSprite() const;
 
@@ -68,9 +69,6 @@ public:
 //    Ground(const Ground& other);
 //    Ground& operator=(Ground other);
 //    friend void swap(Ground& groundA, Ground& groundB);
-
 };
-
-
 
 #endif //OOP_GROUND_HPP

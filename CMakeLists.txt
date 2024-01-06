@@ -127,6 +127,15 @@ add_executable(${PROJECT_NAME} main.cpp
         headers/RedBird.hpp
         src/Exceptions.cpp
         headers/Exceptions.hpp
+        src/BirdFactory.cpp
+        headers/BirdFactory.hpp
+        headers/BirdFactory.hpp
+        src/Command.cpp
+        headers/Command.hpp
+        headers/Command.hpp
+        src/Command.cpp
+        src/Position.cpp
+        headers/Position.hpp
 )
 
 ###############################################################################

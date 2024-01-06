@@ -5,7 +5,7 @@
 #include "../headers/BlueBird.hpp"
 #include <iostream>
 
-BlueBird::BlueBird(int localScoreNeeded) : Bird(localScoreNeeded) {
+BlueBird::BlueBird(int localScoreNeededForNextBird) : Bird(localScoreNeededForNextBird) {
     if (!birdTextureUpFlap.loadFromFile("../assets/blue-bird/bluebird-upflap.png")) {
         throw TextureLoadException();
     }
@@ -34,8 +34,8 @@ BlueBird::BlueBird(int localScoreNeeded) : Bird(localScoreNeeded) {
 //    return new BlueBird(*this);
 //}
 
-int BlueBird::getScoreNeeded() const {
-    return scoreNeeded;
+int BlueBird::getScoreNeededForNextBird() const {
+    return scoreNeededForNextBird;
 }
 
 int BlueBird::getLives() const {

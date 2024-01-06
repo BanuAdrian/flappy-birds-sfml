@@ -5,16 +5,26 @@
 #include "../headers/Bird.hpp"
 #include <iostream>
 
-Bird::Bird(int localScoreNeeded):   wingsAnimationGeneratingClock(std::make_shared<sf::Clock>()),
-                                    scoreNeeded(localScoreNeeded)
+template<class T>
+T maximum(T a, T b) {
+    if (a > b)
+        return a;
+    return b;
+}
+
+Bird::Bird(int localScoreNeededForNextBird): wingsAnimationGeneratingClock(std::make_shared<sf::Clock>()),
+                                  scoreNeededForNextBird(localScoreNeededForNextBird), position(190, 350)
 {
-    posY = 350;
-    posX = 190;
+//    position.setX(350);
+//    position.setY(190);
+//    posY = 350;
+//    posX = 190;
     velocity = 0;
     rotationAngle = 0;
     wingsUp = true;
     birdSprite.setOrigin(10, 10);
-    birdSprite.setPosition(posX, posY);
+//    birdSprite.setPosition(posX, posY);
+    birdSprite.setPosition(position.getX(), position.getY());
     birdSprite.setScale(sf::Vector2f(1.7f, 1.75f));
 }
 
@@ -25,22 +35,24 @@ void Bird::fly() {
 }
 
 void Bird::fall(float elapsedTime) {
-    if (velocity <= 500) {
+    if (maximum<float>(velocity, 500) == 500) {
         velocity += elapsedTime * 2100;
     }
-    if (velocity > 500 && rotationAngle < 90) {
+    if (maximum<float>(velocity, 500) == velocity && maximum<float>(rotationAngle, 90) == 90) {
         velocity += elapsedTime * 5;
         rotationAngle += elapsedTime * 400;
     }
-    else if (rotationAngle >= 90) {
+    else if (maximum<float>(rotationAngle, 90) == rotationAngle) {
         velocity += elapsedTime * 2100;
     }
     birdSprite.setRotation(rotationAngle);
-    posY += velocity * elapsedTime;
+    position.setY(position.getY() + velocity * elapsedTime);
+//    posY += velocity * elapsedTime;
 }
 
 void Bird::update() {
-    birdSprite.setPosition(posX, posY);
+//    birdSprite.setPosition(posX, posY);
+    birdSprite.setPosition(position.getX(), position.getY());
 }
 
 void Bird::animateWings(bool gameHasBegun) {
@@ -66,11 +78,12 @@ void Bird::draw(sf::RenderWindow &window) {
     window.draw(birdSprite);
 }
 void Bird::reset() {
-    posY = 350;
+//    posY = 350;
+    position.setY(350);
     velocity = 0;
     birdSprite.setRotation(0);
     rotationAngle = 0;
-    birdSprite.setPosition(posX, posY);
+    birdSprite.setPosition(position.getX(), position.getY());
     birdSprite.setTexture(birdTextureMidFlap);
 }
 const sf::Sprite & Bird::getBirdSprite() const {
