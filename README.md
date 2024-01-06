@@ -61,6 +61,8 @@
 - [SFML](https://github.com/SFML/SFML/tree/2.6.0) (Zlib)
 - https://www.sfml-dev.org/
 - https://github.com/samuelcust/flappy-bird-assets
-![1](https://github.com/BanuAdrian/proiect-oop-sfml/assets/66678108/d3e755b9-9be6-46dd-9c10-19c2c42c6b51)
-![2](https://github.com/BanuAdrian/proiect-oop-sfml/assets/66678108/f7c78dba-a7c0-4787-bff6-6f8341752940)
-![3](https://github.com/BanuAdrian/proiect-oop-sfml/assets/66678108/31e25a21-268a-4f9c-b651-132c86849d7f)
+- ![1](https://github.com/BanuAdrian/proiect-oop-sfml/assets/66678108/d3e755b9-9be6-46dd-9c10-19c2c42c6b51)
+  
+- ![2](https://github.com/BanuAdrian/proiect-oop-sfml/assets/66678108/f7c78dba-a7c0-4787-bff6-6f8341752940)
+  
+- ![3](https://github.com/BanuAdrian/proiect-oop-sfml/assets/66678108/31e25a21-268a-4f9c-b651-132c86849d7f)
