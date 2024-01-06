@@ -67,5 +67,3 @@
 
 - ![3](https://github.com/BanuAdrian/flappy-evolution-oop/assets/66678108/0cb7031c-b913-47ef-9dfb-6e4604401ad6)
 
-
-
