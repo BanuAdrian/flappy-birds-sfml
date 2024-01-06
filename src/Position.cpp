@@ -17,10 +17,10 @@ T Position<T>::getY() const {
     return this->y;
 }
 
-template<class T>
-[[maybe_unused]] void Position<T>::setX(T localX) {
-    x = localX;
-}
+//template<class T>
+//[[maybe_unused]] void Position<T>::setX(T localX) {
+//    x = localX;
+//}
 
 template<class T>
 void Position<T>::setY(T localY) {

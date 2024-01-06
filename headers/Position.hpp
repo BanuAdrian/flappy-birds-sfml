@@ -43,12 +43,12 @@ public:
      */
     T getY() const;
 
-    /**
-     * \brief Setter for the position on X axis.
-     *
-     * @param localX the new X
-     */
-    [[maybe_unused]] void setX(T localX);
+//    /**
+//     * \brief Setter for the position on X axis.
+//     *
+//     * @param localX the new X
+//     */
+//    [[maybe_unused]] void setX(T localX);
 
     /**
      * \brief Setter for the position on Y axis.
