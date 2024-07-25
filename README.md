@@ -5,7 +5,7 @@ maintained comprehensive documentation of the code within each header file for c
 
 ## Resources
 
-- [SFML](https://github.com/SFML/SFML/tree/2.6.0) (Zlib)
+- [SFML](https://github.com/SFML/SFML/tree/2.6.0)
 - https://www.sfml-dev.org/
 - https://github.com/samuelcust/flappy-bird-assets
 
